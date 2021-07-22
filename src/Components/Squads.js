@@ -31,24 +31,24 @@ export default function SelectMatch() {
     }
 
     return(
-        <View >
+        <Text >
             <Button onPress={getSquads} title="My Squads"/>
-            <View>
+            <Text>
             {squads &&
                 squads.map((squad) => {
                     return(
                         <Text style={{fontSize:20}} key={squad.id}>
-                            <Text >{squad.team_name}</Text>
-                            <br/>
+                            <Text >{"\n"}{squad.team_name}</Text>
+                            {"\n"}
                             {squads.length<10?<Text onPress={onclickhandler}>Create Squad</Text>
                             :null}
                         </Text>
                     )
                 })}
-            </View>
+            </Text>
             {onclickhandler && select_role?
                 <SelectPlayer/>
             :null}
-        </View>
+        </Text>
     );
 }
