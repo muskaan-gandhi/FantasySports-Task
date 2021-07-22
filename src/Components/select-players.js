@@ -72,27 +72,25 @@ export default function SelectPlayer(){
     }
     setFinal_squad([...final_batsman_list, final_wicket_keeper_list, final_all_rounder_list, final_bowler_list])
   }
-  const Squad = final_squad.map(type => <Text><br/>{type} <br/></Text>)
+  const Squad = final_squad.map(type => <Text>{"\n"}{type} {"\n"}</Text>)
 
   return(
     <Text>
-    <br/>
+    {"\n"}{"\n"}
       <Text style={{fontWeight:'400', fontSize:24, backgroundColor:'yellow', paddingHorizontal:'20vw'}} onPress={getPlayer}>Get the list of Players</Text>
-      <br/><br/>
+      {"\n"}{"\n"}
       <Text style={{position:'absolute' ,right:'10px', fontSize:20,fontWeight:'600'}}>Available Credits = {credits}</Text>
-      <br/>
+      {"\n"}
       <Divider orientation="horizontal" width={2}/>
       {!!players &&  <Text style={{fontWeight:'400', fontSize:24}} onPress={()=>setBatsman(!batsman)}>Batsman</Text>}
-      <br/>
+      {"\n"}
   {/*get the list of batman*/}
       {!!batsman&& 
         players.map(player=>{
           return( 
             <Text key={player.id} >
               {batsman&& (player.role == "Batsman")?
-              <Text style={{flexDirection:'row'}}>
-                <Text style={{flexDirection:'column'}}>{player.name} {player.team_name} <Text style={{fontWeight:'600'}}>{player.event_player_credit}</Text></Text>
-            
+                <Text style={{flexDirection:'column'}}>{player.name} {player.team_name} <Text style={{fontWeight:'600'}}>{player.event_player_credit}</Text>
                 <CheckBox 
                   checked={select_batsman.includes(player.name)}
                   onPress={() => {
@@ -123,16 +121,16 @@ export default function SelectPlayer(){
                     }
                     SetSelect_batsman(new_bat_ID)
                   }} />
-                  <br/>
+                  {"\n"}
               </Text>: null} 
             </Text>
           )
         })}
-      <br/>
+      {"\n"}
 
   {/*get the list of wicket-keeper*/}
       {!!players && <Text style={{fontWeight:'400', fontSize:24}} onPress={()=>setWicket_keeper(!wicket_keeper)}>Wicket-keeper</Text>}
-      <br/>
+      {"\n"}
       {!!wicket_keeper&& 
         players.map(player=>{
           return(
@@ -162,16 +160,16 @@ export default function SelectPlayer(){
                   }
                 }
                 SetSelect_wicket(new_wkID)
-              }} /> <br/>
+              }} /> {"\n"}
             </Text>:null}
           </Text>
         )
       })}
-      <br/>
+      {"\n"}
 
   {/*get the list of all-rounder*/}
       {!!players && <Text style={{fontWeight:'400', fontSize:24}} onPress={()=>setAll_rounder(!all_rounder)}>All-Rounder</Text>}
-      <br/>
+      {"\n"}
       {!!all_rounder&& players.map(player=>{
         return(
           <Text key={player.id}>
@@ -200,16 +198,16 @@ export default function SelectPlayer(){
                   }
                 }
                 SetSelect_all_rounder(new_arID)
-              }}/> <br/>
+              }}/> {"\n"}
             </Text>:null}
           </Text>
         )
       })}
-      <br/>
+      {"\n"}
 
   {/*get the list of batman*/}
       {!!players && <Text style={{fontWeight:'400', fontSize:24}} onPress={()=>setBowler(!bowler)}>Bowler</Text>}
-      <br/>
+      {"\n"}
       {!!bowler&& players.map(player=>{
         return(
           <Text key={player.id}>
@@ -238,16 +236,16 @@ export default function SelectPlayer(){
                     }
                   }
                   SetSelect_bowler(new_bowler_ID)
-                }} /><br/>
+                }} />{"\n"}
               </Text>:null}
           </Text>
         )
       })}
-      <br/>
+      {"\n"}
       {/**get the final squad */}
       {!!players &&  <Button onPress={getMySquad} title="Review Squad"/>}
-      {players&& final_squad&&<Text>{ !min_player?  <Text style={{color:'red'}}><br/>Select atleast 3 batsman, 1 wicket-keeper and 3 bowlers</Text>:{Squad}}</Text>} 
-      <br/>
+      {players&& final_squad&&<Text>{ !min_player?  <Text style={{color:'red'}}>{"\n"}Select atleast 3 batsman, 1 wicket-keeper and 3 bowlers</Text>:{Squad}}</Text>} 
+      {"\n"}
 
     </Text>
   )
