@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { View, Button , Text,StyleSheet , CheckBox} from "react-native";
-import { ScrollView } from "react-native";
+import { View, Button , Text , StyleSheet , ScrollView , SafeAreaView} from "react-native";
 import Squads from "./Squads";
 
 function SelectMatch() {
@@ -43,25 +42,25 @@ function SelectMatch() {
     }
 
     return (
-        <View style={{marginHorizontal:5}}>
+        <Text>
             <Button onPress={getMatches} title="Get Upcoming Matches"/>
-            <ScrollView horizontal='true'>
-            {match &&
+            <SafeAreaView style={styles.container}>
+            <ScrollView horizontal='true'style={styles.scrollView}>
+            {!!match &&
                 match.map((matches) => {
                     return(
-                        <View key={matches.id} style={[styles.matches_list_container]}>
+                        <Text key={matches.id} style={[styles.matches_list_container]}>
                             <Text style={[styles.matches_list]} onPress={onclickhandler}>'{matches.match_name}'</Text>
-                        </View>
+                        </Text>
                     )
                 })}
             </ScrollView>
-            {onclickhandler && total_squads?
-                <Squads/>
-            :null}
-            <br/>
+            </SafeAreaView>
+            {onclickhandler && total_squads?<Squads/>:null}
+            {"\n"}{"\n"}
             <Button onPress={getLeagues} title="Available Leagues"/>
-            {leagues&& leagues.map(league=>{return(<Text key={league.id}>{league.name} {league.league_type} {league.id}</Text>)})}
-        </View>
+            {!!leagues&& leagues.map(league=>{return(<Text key={league.id}>{"\n"}{league.name} {league.league_type} {league.id}{"\n"}</Text>)})}
+        </Text>
     );
 }
 export default SelectMatch;
@@ -77,7 +76,6 @@ const styles = StyleSheet.create({
         fontFamily:'Roboto',
         fontSize:18,
         color:'black'
-        
     }
 })
     
